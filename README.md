@@ -12,8 +12,8 @@ Follow these steps to set up and run the project locally:
 
 ### 2️⃣ Clone the Repository
 ```sh
-git clone <your-repo-link>
-cd <your-project-folder>
+git clone https://github.com/mukeshkuiry/rockerz
+cd rockerz
 ```
 
 ### 3️⃣ Install Dependencies
@@ -66,4 +66,5 @@ Now, open the application in your browser at `http://localhost:3000` (default Re
 3. View the results in the table with sorting, filtering, and exporting options.
 4. Toggle between light and dark themes for better readability.
 
-For detailed documentation, architecture, and technical explanations, refer to the accompanying PDF.
+mukeshkk3162@gmail.com
+Mukesh Kuiry
