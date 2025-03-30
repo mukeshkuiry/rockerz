@@ -66,5 +66,12 @@ Now, open the application in your browser at `http://localhost:3000` (default Re
 3. View the results in the table with sorting, filtering, and exporting options.
 4. Toggle between light and dark themes for better readability.
 
+## Load Time
+1. LCP: <1.4s
+2. CLS: 0s]
+
+![image](https://github.com/user-attachments/assets/3f1222f9-947f-4053-8f4a-71c679488a40)
+
+
 mukeshkk3162@gmail.com
 Mukesh Kuiry
