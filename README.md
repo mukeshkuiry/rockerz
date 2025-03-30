@@ -1,47 +1,70 @@
-# Getting Started with Create React App
+# SQL Executor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a web-based SQL query execution application built using React and Material UI.
 
-## Available Scripts
+## 🚀 Setup Guide
 
-In the project directory, you can run:
+Follow these steps to set up and run the project locally:
 
-### `npm start`
+### 1️⃣ Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 2️⃣ Clone the Repository
+```sh
+git clone https://github.com/mukeshkuiry/rockerz
+cd rockerz
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 3️⃣ Install Dependencies
+```sh
+npm install
+# or
+yarn install
+```
 
-### `npm test`
+### 4️⃣ Start the Development Server
+```sh
+npm start
+# or
+yarn start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 5️⃣ Build for Production
+```sh
+npm run build
+# or
+yarn build
+```
 
-### `npm run build`
+Now, open the application in your browser at `http://localhost:3000` (default React port). 🎉
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠 Tech Stack
+- **Frontend:** React, TypeScript
+- **UI Library:** Material UI
+- **Code Editor:** Monaco Editor
+- **Data Grid:** MUI X Data Grid Pro
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📦 Libraries Used
+- `@mui/material` - UI components
+- `@mui/x-data-grid-pro` - Advanced data grid features
+- `@monaco-editor/react` - SQL editor
+- `react` - Core framework
+- `typescript` - Type safety
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ✨ Features
+- Execute SQL queries dynamically
+- SQL syntax highlighting using Monaco Editor
+- Copy and clear SQL queries
+- View query results in an interactive data grid
+- Export results in various formats
+- Light/Dark mode toggle
 
-### `npm run eject`
+## 📌 Usage
+1. Enter an SQL query in the editor.
+2. Click **Execute SQL** to run the query.
+3. View the results in the table with sorting, filtering, and exporting options.
+4. Toggle between light and dark themes for better readability.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# rockerz
+mukeshkk3162@gmail.com
+Mukesh Kuiry
