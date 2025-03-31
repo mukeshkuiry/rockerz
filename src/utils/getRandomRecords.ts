@@ -22,10 +22,22 @@ const fetchCSV = async (filePath: string): Promise<TableRow[]> => {
   }
 };
 
-const getRandomRows = (rows: TableRow[], size: number): TableRow[] => {
-  if (size >= rows.length) return rows;
-  return rows.sort(() => Math.random() - 0.5).slice(0, size);
-};
+const getRandomRows = (rows: TableRow[], size: number): TableRow[] =>
+  size >= rows.length
+    ? rows
+    : [...rows].sort(() => 0.5 - Math.random()).slice(0, size);
+
+const generateMockData = (): TableRow[] =>
+  Array.from({ length: 1000000 }, (_, i) => ({
+    id: i + 1,
+    name: `Record ${i + 1}`,
+    age: Math.floor(Math.random() * 100) + 1,
+    salary: Math.floor(Math.random() * 100000) + 50000,
+    description: `Description for record ${i + 1}`,
+    something: Math.random() > 0.5 ? "Yes" : "No",
+    moreSomething: Math.random() > 0.5 ? "Yes" : "No",
+    onceMoreSomething: Math.random() > 0.5 ? "Yes" : "No",
+  }));
 
 export const getRandomRecords = async (): Promise<TableRow[]> => {
   try {
@@ -35,22 +47,13 @@ export const getRandomRecords = async (): Promise<TableRow[]> => {
       "/data/employees.csv",
       "/data/orders.csv",
     ];
-    const randomFilePath =
-      filePaths[Math.floor(Math.random() * filePaths.length)];
-    const csvRows = await fetchCSV(randomFilePath);
+    const csvRows = await fetchCSV(
+      filePaths[Math.floor(Math.random() * filePaths.length)]
+    );
 
-    const millionRows = Array.from({ length: 1000000 }, (_, i) => ({
-      id: i + 1,
-      name: `Record ${i + 1}`,
-      age: Math.floor(Math.random() * 100) + 1,
-      salary: Math.floor(Math.random() * 100000) + 50000,
-      description: `Description for record ${i + 1}`,
-      something: Math.random() > 0.5 ? "Yes" : "No",
-      moreSomething: Math.random() > 0.5 ? "Yes" : "No",
-      onceMoreSomething: Math.random() > 0.5 ? "Yes" : "No",
-    }));
-
-    return Math.random() < 0.5 ? getRandomRows(csvRows, size) : millionRows;
+    return Math.random() < 0.5
+      ? getRandomRows(csvRows, size)
+      : generateMockData();
   } catch (err) {
     console.error("Error generating records:", err);
     return [];

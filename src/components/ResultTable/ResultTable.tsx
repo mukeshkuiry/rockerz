@@ -32,6 +32,7 @@ const ResultTable = <T extends { id?: number }>({
     );
   }
 
+  // Dynamically generate columns from query result
   const columns: GridColDef[] = Object.keys(queryResult[0]).map((key) => ({
     field: key,
     headerName: key.toUpperCase(),
@@ -43,12 +44,14 @@ const ResultTable = <T extends { id?: number }>({
     align: "left",
   }));
 
+  // Custom toolbar for DataGridPro
   const CustomToolbar = () => (
     <GridToolbarContainer
       sx={{
         padding: "4px 8px",
-        backgroundColor: (theme) => theme.palette.background.paper,
-        borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        backgroundColor: "background.paper",
+        borderBottom: "1px solid",
+        borderColor: "divider",
       }}
     >
       <GridToolbarColumnsButton />
@@ -66,9 +69,9 @@ const ResultTable = <T extends { id?: number }>({
       sx={{
         width: "100%",
         height: 600,
-        backgroundColor: (theme) => theme.palette.background.paper,
+        backgroundColor: "background.paper",
         border: "1px solid",
-        borderColor: (theme) => theme.palette.divider,
+        borderColor: "divider",
       }}
     >
       <DataGridPro
@@ -85,23 +88,17 @@ const ResultTable = <T extends { id?: number }>({
           pagination: { paginationModel: { pageSize: 20, page: 0 } },
         }}
         sortingOrder={["asc", "desc"]}
-        slots={{
-          toolbar: CustomToolbar,
-        }}
+        slots={{ toolbar: CustomToolbar }}
         sx={{
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: (theme) => theme.palette.background.default,
-            fontSize: "14px",
-            fontWeight: "500",
+            backgroundColor: "background.default",
+            fontSize: 14,
+            fontWeight: 500,
           },
-          "& .MuiDataGrid-cell": {
-            fontSize: "14px",
-          },
-          "& .MuiCheckbox-root": {
-            padding: "4px",
-          },
+          "& .MuiDataGrid-cell": { fontSize: 14 },
+          "& .MuiCheckbox-root": { padding: 4 },
           "& .MuiDataGrid-footerContainer": {
-            backgroundColor: (theme) => theme.palette.background.default,
+            backgroundColor: "background.default",
           },
         }}
       />

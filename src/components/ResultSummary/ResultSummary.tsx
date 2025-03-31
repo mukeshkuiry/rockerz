@@ -1,27 +1,27 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 
 type ResultSummaryProps = {
   rowCount: number;
   columnCount: number;
-  executionTime?: number; // In milliseconds
+  executionTime?: number;
 };
 
-const ResultSummary: React.FC<ResultSummaryProps> = ({
+const ResultSummary = ({
   rowCount,
   columnCount,
   executionTime,
-}) => {
+}: ResultSummaryProps) => {
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "8px 0",
-        borderBottom: "1px solid #e0e0e0",
-        color: "#666",
-        fontSize: "14px",
+        paddingY: 1,
+        borderBottom: "1px solid",
+        borderColor: "divider",
+        color: "text.secondary",
+        fontSize: 14,
       }}
     >
       <Typography>

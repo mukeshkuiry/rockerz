@@ -1,7 +1,7 @@
+import { useState } from "react";
 import { Editor } from "@monaco-editor/react";
 import { useTheme } from "../../context/ThemeContext";
 import { Box, Button, Tooltip, Snackbar, Stack } from "@mui/material";
-import { useState } from "react";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -15,17 +15,14 @@ const SqlEditor = ({ sql, setSql }: SqlEditorProps) => {
   const [copySuccess, setCopySuccess] = useState(false);
 
   const handleCopy = async () => {
-    if (sql) {
-      try {
-        await navigator.clipboard.writeText(sql);
-        setCopySuccess(true);
-      } catch (err) {
-        console.error("Failed to copy:", err);
-      }
+    if (!sql) return;
+    try {
+      await navigator.clipboard.writeText(sql);
+      setCopySuccess(true);
+    } catch (err) {
+      console.error("Copy failed:", err);
     }
   };
-
-  const handleClear = () => setSql("");
 
   return (
     <Box
@@ -34,9 +31,9 @@ const SqlEditor = ({ sql, setSql }: SqlEditorProps) => {
         borderColor: (theme) => theme.palette.divider,
         padding: 1.5,
         backgroundColor: (theme) => theme.palette.background.paper,
-        overflow: "hidden",
       }}
     >
+      {/* SQL Code Editor */}
       <Editor
         height="180px"
         defaultLanguage="sql"
@@ -45,41 +42,32 @@ const SqlEditor = ({ sql, setSql }: SqlEditorProps) => {
         onChange={(value) => setSql(value || "")}
         options={{
           fontSize: 20,
-          lineNumbers: "off",
           minimap: { enabled: false },
           scrollBeyondLastLine: false,
           wordWrap: "on",
-          placeholder: "Write your SQL query here...",
         }}
       />
 
+      {/* Buttons: Clear & Copy */}
       <Stack
         direction="row"
         spacing={1}
         justifyContent="flex-end"
-        sx={{ marginTop: 1 }}
+        sx={{ mt: 1 }}
       >
-        {/* Clear Button */}
         <Tooltip title="Clear SQL" arrow>
           <Button
             variant="outlined"
             color="error"
-            onClick={handleClear}
+            onClick={() => setSql("")}
             startIcon={<ClearIcon />}
             disabled={!sql}
-            sx={{
-              textTransform: "none",
-              fontSize: 14,
-              padding: "6px 16px",
-              minWidth: "110px",
-              borderRadius: 0,
-            }}
+            sx={{ textTransform: "none", fontSize: 14 }}
           >
             Clear
           </Button>
         </Tooltip>
 
-        {/* Copy Button */}
         <Tooltip title="Copy to Clipboard" arrow>
           <Button
             variant="contained"
@@ -87,24 +75,14 @@ const SqlEditor = ({ sql, setSql }: SqlEditorProps) => {
             onClick={handleCopy}
             startIcon={<ContentCopyIcon />}
             disabled={!sql}
-            sx={{
-              textTransform: "none",
-              fontSize: 14,
-              padding: "6px 16px",
-              minWidth: "110px",
-              borderRadius: 0,
-              boxShadow: "none",
-              "&:hover": {
-                backgroundColor: "#357ab7",
-              },
-            }}
+            sx={{ textTransform: "none", fontSize: 14 }}
           >
             Copy
           </Button>
         </Tooltip>
       </Stack>
 
-      {/* Snackbar for Copy Success */}
+      {/* Snackbar Notification */}
       <Snackbar
         open={copySuccess}
         autoHideDuration={2000}

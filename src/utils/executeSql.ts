@@ -1,17 +1,19 @@
-import { error } from "console";
 import { getRandomRecords } from "./getRandomRecords";
 import { TableRow } from "../types/result";
 
 export const executeSql = async (sql: string): Promise<TableRow[]> => {
-  if (sql.trim() === "") {
-    return [];
-  }
+  if (!sql.trim()) return [];
+
   try {
     const queryResult = await getRandomRecords();
-    console.log("Query Result:", queryResult);
+    console.log(
+      "Query executed successfully:",
+      queryResult.length,
+      "rows returned."
+    );
     return queryResult;
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.error("Error executing SQL:", error);
     return [];
   }
 };

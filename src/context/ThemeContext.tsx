@@ -1,14 +1,17 @@
-import { createContext, useContext, useMemo, useState, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { lightTheme, darkTheme } from "../theme/theme";
 
+type ThemeMode = "light" | "dark";
+
 type ThemeContextType = {
-  theme: "light" | "dark";
+  theme: ThemeMode;
   toggleTheme: () => void;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Custom hook for using the theme context
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context)
@@ -16,12 +19,12 @@ export const useTheme = () => {
   return context;
 };
 
+// Theme context provider component
 export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<"light" | "dark">("dark");
+  const [theme, setTheme] = useState<ThemeMode>("dark");
 
-  const toggleTheme = () => {
+  const toggleTheme = () =>
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
-  };
 
   const currentTheme = useMemo(
     () => (theme === "light" ? lightTheme : darkTheme),
